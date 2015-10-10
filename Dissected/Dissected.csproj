@@ -71,6 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structure\Column.cs" />
+    <Compile Include="Structure\Document.cs" />
     <Compile Include="Structure\ListColumn.cs" />
     <Compile Include="Structure\ScalarColumn.cs" />
     <EmbeddedResource Include="Dissected.resx">

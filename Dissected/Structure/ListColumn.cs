@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Dissected.Structure
 {
@@ -7,14 +8,16 @@ namespace Dissected.Structure
     {
         private readonly IList<string> Texts;
 
-        public ListColumn(int capacity)
+        public ListColumn(IEnumerable<string> texts)
         {
-            Texts = new string[capacity];
+            Texts = texts.ToList();
         }
+
+        public override int TotalRows => Texts.Count;
 
         public override void Write(int row, string text)
         {
-            if (row >= Texts.Count)
+            if(row >= TotalRows)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -23,7 +26,7 @@ namespace Dissected.Structure
 
         public override string Read(int row)
         {
-            if (row >= Texts.Count)
+            if(row >= TotalRows)
             {
                 throw new IndexOutOfRangeException();
             }

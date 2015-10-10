@@ -11,7 +11,7 @@ namespace Dissected.Tests.Structure
         [SetUp]
         public void Setup()
         {
-            Column = new ScalarColumn();
+            Column = new ScalarColumn("");
         }
 
         [Test]

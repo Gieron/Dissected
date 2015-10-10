@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Dissected.Structure;
 using NUnit.Framework;
 
@@ -12,7 +13,8 @@ namespace Dissected.Tests.Structure
         [SetUp]
         public void Setup()
         {
-            Column = new ListColumn(2);
+            var texts = new List<string> {"", ""};
+            Column = new ListColumn(texts);
         }
 
         [Test]
