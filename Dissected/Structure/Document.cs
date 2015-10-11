@@ -4,20 +4,20 @@ using System.Linq;
 
 namespace Dissected.Structure
 {
-    public class Document
+    public class Document : IDocument
     {
-        private readonly IList<Column> Columns;
+        private readonly IList<IColumn> Columns;
 
         public Document()
         {
             TotalRows = 0;
-            Columns = new List<Column>();
+            Columns = new List<IColumn>();
         }
 
         public int TotalRows { get; private set; }
         public int TotalColumns => Columns.Count;
 
-        public void AddColumn(Column column)
+        public void AddColumn(IColumn column)
         {
             if(column.TotalRows > TotalRows)
             {

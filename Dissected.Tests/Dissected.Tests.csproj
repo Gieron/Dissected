@@ -55,6 +55,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Convertion\AssemblerTests.cs" />
+    <Compile Include="Convertion\ParserTests.cs" />
     <Compile Include="Structure\DocumentTests.cs" />
     <Compile Include="Structure\ListColumnTests.cs" />
     <Compile Include="Structure\ScalarColumnTests.cs" />

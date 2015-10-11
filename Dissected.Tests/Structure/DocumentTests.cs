@@ -20,7 +20,7 @@ namespace Dissected.Tests.Structure
         public void AddOneColumn_ReportsOneColumn()
         {
             // Arrange
-            Column column = Substitute.For<Column>();
+            IColumn column = Substitute.For<IColumn>();
 
             // Act
             Document.AddColumn(column);
@@ -33,7 +33,7 @@ namespace Dissected.Tests.Structure
         public void AddColumnWithOneRow_ReportsOneRow()
         {
             // Arrange
-            Column column = Substitute.For<Column>();
+            IColumn column = Substitute.For<IColumn>();
             column.TotalRows.Returns(1);
 
             // Act
@@ -47,9 +47,9 @@ namespace Dissected.Tests.Structure
         public void AddTwoColumnsWithDifferentRowCount_ReportsLargestRowCount()
         {
             // Arrange
-            Column column1 = Substitute.For<Column>();
+            IColumn column1 = Substitute.For<IColumn>();
             column1.TotalRows.Returns(1);
-            Column column2 = Substitute.For<Column>();
+            IColumn column2 = Substitute.For<IColumn>();
             column2.TotalRows.Returns(2);
 
             // Act
@@ -64,21 +64,21 @@ namespace Dissected.Tests.Structure
         public void Write_CallsColumnWrite()
         {
             // Arrange
-            Column column = Substitute.For<Column>();
+            IColumn column = Substitute.For<IColumn>();
             Document.AddColumn(column);
 
             // Act
             Document.Write(0, 0, "Test value");
 
             // Assert
-            column.Received().Write(0, "Test value");
+            column.Received(1).Write(0, "Test value");
         }
 
         [Test]
         public void WriteBeyondCapacity_ThrowsException()
         {
             // Arrange
-            Column column = Substitute.For<Column>();
+            IColumn column = Substitute.For<IColumn>();
             Document.AddColumn(column);
 
             // Act and Assert
@@ -92,7 +92,7 @@ namespace Dissected.Tests.Structure
         public void Read_CallsColumnRead()
         {
             // Arrange
-            Column column = Substitute.For<Column>();
+            IColumn column = Substitute.For<IColumn>();
             Document.AddColumn(column);
 
             // Act
@@ -106,7 +106,7 @@ namespace Dissected.Tests.Structure
         public void ReadBeyondCapacity_ThrowsException()
         {
             // Arrange
-            Column column = Substitute.For<Column>();
+            IColumn column = Substitute.For<IColumn>();
             Document.AddColumn(column);
 
             // Act and Assert

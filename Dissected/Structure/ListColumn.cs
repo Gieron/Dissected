@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Dissected.Structure
 {
-    public class ListColumn : Column
+    public class ListColumn : IColumn
     {
         private readonly IList<string> Texts;
 
@@ -13,9 +13,9 @@ namespace Dissected.Structure
             Texts = texts.ToList();
         }
 
-        public override int TotalRows => Texts.Count;
+        public int TotalRows => Texts.Count;
 
-        public override void Write(int row, string text)
+        public void Write(int row, string text)
         {
             if(row >= TotalRows)
             {
@@ -24,7 +24,7 @@ namespace Dissected.Structure
             Texts[row] = text;
         }
 
-        public override string Read(int row)
+        public string Read(int row)
         {
             if(row >= TotalRows)
             {
