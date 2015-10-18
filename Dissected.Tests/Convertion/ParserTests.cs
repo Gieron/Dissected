@@ -69,8 +69,8 @@ CDF";
         public void ParseFixedLengthComplexRows_YieldsComplexColumns()
         {
             // Arrange
-            const string text = @"ABCDEFJKL
-ABCGHIJKL";
+            const string text = @"ABC DEF JKL
+ABC GHI JKL";
 
             // Act
             Parser.Parse(ReadString(text), Document);
@@ -85,16 +85,16 @@ ABCGHIJKL";
         public void ParseVariableLengthComplexRows_YieldsComplexColumns()
         {
             // Arrange
-            const string text = @"ABCTUV
-ABCGHIJKLMNOPQRSTUV
-ABCWXYZTUV";
+            const string text = @"ABC TUV
+ABC GHIJKL MNOPQRS TUV
+ABC WXYZ TUV";
 
             // Act
             Parser.Parse(ReadString(text), Document);
 
             // Assert
             Document.Received(1).AddColumn(new ScalarColumn("ABC"));
-            Document.Received(1).AddColumn(new ListColumn(new List<string> {"", "GHIJKLMNOPQRS", "WXYZ"}));
+            Document.Received(1).AddColumn(new ListColumn(new List<string> {"", "GHIJKL MNOPQRS", "WXYZ"}));
             Document.Received(1).AddColumn(new ScalarColumn("TUV"));
         }
     }
