@@ -26,7 +26,7 @@ namespace Dissected.Tests.Structure
             Document.AddColumn(column);
 
             // Assert
-            Assert.AreEqual(Document.TotalColumns, 1);
+            Assert.AreEqual(1, Document.TotalColumns);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Dissected.Tests.Structure
             Document.AddColumn(column);
 
             // Assert
-            Assert.AreEqual(Document.TotalRows, 1);
+            Assert.AreEqual(1, Document.TotalRows);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Dissected.Tests.Structure
             Document.AddColumn(column2);
 
             // Assert
-            Assert.AreEqual(Document.TotalRows, 2);
+            Assert.AreEqual(2, Document.TotalRows);
         }
 
         [Test]

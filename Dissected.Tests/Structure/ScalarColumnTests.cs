@@ -22,7 +22,7 @@ namespace Dissected.Tests.Structure
             string result = Column.Read(0);
 
             // Assert
-            Assert.AreEqual(result, "Test value");
+            Assert.AreEqual("Test value", result);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Dissected.Tests.Structure
             string result = Column.Read(1);
 
             // Assert
-            Assert.AreEqual(result, "Test value");
+            Assert.AreEqual("Test value", result);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Dissected.Tests.Convertion
 
         private string GetResultFromStream()
         {
+            Stream.Seek(0, 0);
             return new StreamReader(Stream).ReadToEnd();
         }
 
@@ -36,7 +37,8 @@ namespace Dissected.Tests.Convertion
             Assembler.Assemble(Document, Stream);
 
             // Assert
-            Assert.AreEqual(GetResultFromStream(), @"ABC");
+            Assert.AreEqual(@"ABC
+", GetResultFromStream());
         }
 
         [Test]
@@ -52,7 +54,8 @@ namespace Dissected.Tests.Convertion
             Assembler.Assemble(Document, Stream);
 
             // Assert
-            Assert.AreEqual(GetResultFromStream(), @"ABCDEF");
+            Assert.AreEqual(@"ABCDEF
+", GetResultFromStream());
         }
 
         [Test]
@@ -68,8 +71,9 @@ namespace Dissected.Tests.Convertion
             Assembler.Assemble(Document, Stream);
 
             // Assert
-            Assert.AreEqual(GetResultFromStream(), @"ABC
-DEF");
+            Assert.AreEqual(@"ABC
+DEF
+", GetResultFromStream());
         }
 
         [Test]
@@ -87,8 +91,9 @@ DEF");
             Assembler.Assemble(Document, Stream);
 
             // Assert
-            Assert.AreEqual(GetResultFromStream(), @"ABCDEF
-GHIJKL");
+            Assert.AreEqual(@"ABCDEF
+GHIJKL
+", GetResultFromStream());
         }
 
         [Test]
@@ -102,7 +107,7 @@ GHIJKL");
             Assembler.Assemble(Document, Stream);
 
             // Assert
-            Assert.AreEqual(GetResultFromStream(), @"");
+            Assert.AreEqual(@"", GetResultFromStream());
         }
 
         [Test]
@@ -116,7 +121,7 @@ GHIJKL");
             Assembler.Assemble(Document, Stream);
 
             // Assert
-            Assert.AreEqual(GetResultFromStream(), @"");
+            Assert.AreEqual(@"", GetResultFromStream());
         }
     }
 }
