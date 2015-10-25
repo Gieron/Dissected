@@ -11,12 +11,16 @@ namespace Dissected.Tests.Convertion
     [TestFixture]
     public class ParserTests
     {
+        private Parser Parser;
         private IDocument Document;
+        private IColumnFactory Factory;
 
         [SetUp]
         public void Setup()
         {
             Document = Substitute.For<IDocument>();
+            Factory = Substitute.For<IColumnFactory>();
+            Parser = new Parser(Factory);
         }
 
         private static Stream ReadString(string text)
@@ -34,7 +38,7 @@ namespace Dissected.Tests.Convertion
             Parser.Parse(ReadString(text), Document);
 
             // Assert
-            Document.Received(1).AddColumn(new ScalarColumn("ABC"));
+            Factory.Received(1).CreateScalarColumn("ABC");
         }
 
         [Test]
@@ -48,7 +52,7 @@ ABC";
             Parser.Parse(ReadString(text), Document);
 
             // Assert
-            Document.Received(1).AddColumn(new ScalarColumn("ABC"));
+            Factory.Received(1).CreateScalarColumn("ABC");
         }
 
         [Test]
@@ -62,7 +66,7 @@ CDF";
             Parser.Parse(ReadString(text), Document);
 
             // Assert
-            Document.Received(1).AddColumn(new ListColumn(new List<string> {"ABC", "CDF"}));
+            Factory.Received(1).CreateListColumn(new List<string> {"ABC", "CDF"});
         }
 
         [Test]
@@ -76,9 +80,9 @@ ABC GHI JKL";
             Parser.Parse(ReadString(text), Document);
 
             // Assert
-            Document.Received(1).AddColumn(new ScalarColumn("ABC"));
-            Document.Received(1).AddColumn(new ListColumn(new List<string> {"CDF", "GHI"}));
-            Document.Received(1).AddColumn(new ScalarColumn("JKL"));
+            Factory.Received(1).CreateScalarColumn("ABC");
+            Factory.Received(1).CreateListColumn(new List<string> {"CDF", "GHI"});
+            Factory.Received(1).CreateScalarColumn("JKL");
         }
 
         [Test]
@@ -93,9 +97,9 @@ ABC WXYZ TUV";
             Parser.Parse(ReadString(text), Document);
 
             // Assert
-            Document.Received(1).AddColumn(new ScalarColumn("ABC"));
-            Document.Received(1).AddColumn(new ListColumn(new List<string> {"", "GHIJKL MNOPQRS", "WXYZ"}));
-            Document.Received(1).AddColumn(new ScalarColumn("TUV"));
+            Factory.Received(1).CreateScalarColumn("ABC");
+            Factory.Received(1).CreateListColumn(new List<string> {"", "GHIJKL MNOPQRS", "WXYZ"});
+            Factory.Received(1).CreateScalarColumn("TUV");
         }
     }
 }

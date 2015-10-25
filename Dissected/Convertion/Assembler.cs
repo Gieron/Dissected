@@ -4,13 +4,13 @@ using Dissected.Structure;
 
 namespace Dissected.Convertion
 {
-    public static class Assembler
+    public class Assembler
     {
         /// <summary>
         /// Writes the document to stream in UTF-8 without BOM.
         /// The stream is NOT closed.
         /// </summary>
-        public static void Assemble(IDocument document, Stream stream)
+        public void Assemble(IDocument document, Stream stream)
         {
             if(document.TotalRows == 0 || document.TotalColumns == 0)
             {

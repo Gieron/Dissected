@@ -1,4 +1,6 @@
-﻿namespace Dissected.Structure
+﻿using System;
+
+namespace Dissected.Structure
 {
     public interface IColumn
     {

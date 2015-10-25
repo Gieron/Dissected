@@ -9,6 +9,7 @@ namespace Dissected.Tests.Convertion
     [TestFixture]
     public class AssemblerTests
     {
+        private Assembler Assembler;
         private IDocument Document;
         private Stream Stream;
 
@@ -17,6 +18,7 @@ namespace Dissected.Tests.Convertion
         {
             Document = Substitute.For<IDocument>();
             Stream = new MemoryStream();
+            Assembler = new Assembler();
         }
 
         private string GetResultFromStream()
