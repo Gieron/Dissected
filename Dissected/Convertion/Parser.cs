@@ -6,7 +6,7 @@ namespace Dissected.Convertion
 {
     public class Parser
     {
-        private IColumnFactory Factory;
+        private readonly IColumnFactory Factory;
 
         public Parser(IColumnFactory factory)
         {
@@ -20,7 +20,7 @@ namespace Dissected.Convertion
                 if(!reader.EndOfStream)
                 {
                     string text = reader.ReadLine();
-                    document.AddColumn(Factory.CreateScalarColumn("ABC"));
+                    document.AddColumn(Factory.CreateScalarColumn(text));
                 }
 
                 while(!reader.EndOfStream)
