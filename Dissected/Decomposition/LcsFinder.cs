@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Dissected.Decomposition
@@ -62,9 +64,28 @@ namespace Dissected.Decomposition
             return builder.ToString();
         }
 
-        public string[] FindAllCommonSubstrings(string a, string b)
+        public IEnumerable<string> FindAllCommonSubstrings(string a, string b)
         {
-            throw new NotImplementedException();
+            string lcs = FindLongestCommonSubstring(a, b);
+
+            if(String.IsNullOrEmpty(lcs))
+            {
+                return new List<string>();
+            }
+
+            int index = a.IndexOf(lcs, StringComparison.InvariantCulture);
+            string a1 = a.Substring(0, index);
+            index += lcs.Length;
+            string a2 = a.Length < index ? String.Empty : a.Substring(index);
+
+            index = b.IndexOf(lcs, StringComparison.InvariantCulture);
+            string b1 = b.Substring(0, index);
+            index += lcs.Length;
+            string b2 = b.Length < index ? String.Empty : b.Substring(index);
+
+            IEnumerable<string> result = FindAllCommonSubstrings(a1, b1);
+            result = result.Concat(new List<string> {lcs});
+            return result.Concat(FindAllCommonSubstrings(a2, b2));
         }
     }
 }
